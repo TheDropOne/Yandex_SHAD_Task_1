@@ -1,13 +1,15 @@
-package by.thedrop.yandex_shad_task_1;
+package by.thedrop.yandex_shad_task_1.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class WelcomePageActivity extends AppCompatActivity {
+import by.thedrop.yandex_shad_task_1.R;
+
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome_page);
+        setContentView(R.layout.activity_main);
     }
 }
