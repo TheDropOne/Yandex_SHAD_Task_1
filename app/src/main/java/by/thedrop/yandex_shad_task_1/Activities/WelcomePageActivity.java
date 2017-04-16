@@ -1,12 +1,13 @@
 package by.thedrop.yandex_shad_task_1.Activities;
 
+import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
@@ -16,9 +17,11 @@ import by.thedrop.yandex_shad_task_1.R;
 public class WelcomePageActivity extends AppCompatActivity {
 
     private static final int PAGE_COUNT = 3;
+    private static int CURRENT_ITEM = 0;
 
     private ViewPager mViewPager;
     private PagerAdapter mPagerAdapter;
+    private TabLayout tabLayout;
     private Button mStartButton;
 
     @Override
@@ -29,17 +32,34 @@ public class WelcomePageActivity extends AppCompatActivity {
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.wa_view_pager);
         mViewPager.setAdapter(mPagerAdapter);
+        tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        tabLayout.setupWithViewPager(mViewPager, true);
 
         mStartButton = (Button) findViewById(R.id.wa_button_start);
+        mStartButton.setText(R.string.next);
         mStartButton.setTypeface(MainActivity.fontFutura);
         mStartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                if (mViewPager.getCurrentItem() == PAGE_COUNT - 1) {
+                    finish();
+                } else {
+                    notifyNextButtonPressed();
+                }
             }
         });
     }
 
+    private void notifyNextButtonPressed() {
+        CURRENT_ITEM++;
+        if (CURRENT_ITEM == PAGE_COUNT - 1) {
+            mStartButton.setText(R.string.start_usage);
+            mViewPager.setCurrentItem(CURRENT_ITEM);
+        } else {
+            mStartButton.setText(R.string.next);
+            mViewPager.setCurrentItem(CURRENT_ITEM);
+        }
+    }
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
         public ScreenSlidePagerAdapter(FragmentManager fm) {
@@ -48,20 +68,21 @@ public class WelcomePageActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            switch (position){
+            switch (position) {
                 case 0:
-                    return new FragmentWelcomeAdvantages(R.drawable.fragment_design,R.string.perfect_design);
+                    return new FragmentWelcomeAdvantages(R.drawable.fragment_design, R.string.perfect_design);
                 case 1:
-                    return new FragmentWelcomeAdvantages(R.drawable.fragment_silly,R.string.to_simple);
+                    return new FragmentWelcomeAdvantages(R.drawable.fragment_silly, R.string.to_simple);
                 case 2:
-                    return new FragmentWelcomeAdvantages(R.drawable.fragment_need,R.string.you_need_it);
+                    return new FragmentWelcomeAdvantages(R.drawable.fragment_need, R.string.you_need_it);
             }
-            return new FragmentWelcomeAdvantages(R.drawable.fragment_need,R.string.app_name);
+            return new FragmentWelcomeAdvantages(R.drawable.fragment_need, R.string.app_name);
         }
 
         @Override
         public int getCount() {
             return PAGE_COUNT;
         }
+
     }
 }
