@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import by.thedrop.yandex_shad_task_1.Activities.MainActivity;
 import by.thedrop.yandex_shad_task_1.R;
 
 public class FragmentWelcomeAdvantages extends Fragment {
@@ -45,6 +46,7 @@ public class FragmentWelcomeAdvantages extends Fragment {
         this.mTextView = (TextView) v.findViewById(R.id.wa_textView);
         mImageView.setImageResource(imageResource);
         mTextView.setText(stringResource);
+        mTextView.setTypeface(MainActivity.fontFutura);
 
         return v;
     }

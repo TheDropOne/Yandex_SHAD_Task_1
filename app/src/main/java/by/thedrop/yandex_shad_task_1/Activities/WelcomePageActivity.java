@@ -7,6 +7,8 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import by.thedrop.yandex_shad_task_1.Fragments.FragmentWelcomeAdvantages;
 import by.thedrop.yandex_shad_task_1.R;
@@ -17,17 +19,25 @@ public class WelcomePageActivity extends AppCompatActivity {
 
     private ViewPager mViewPager;
     private PagerAdapter mPagerAdapter;
-
+    private Button mStartButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_page);
 
-        mViewPager = (ViewPager) findViewById(R.id.wa_view_pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
-
+        mViewPager = (ViewPager) findViewById(R.id.wa_view_pager);
         mViewPager.setAdapter(mPagerAdapter);
+
+        mStartButton = (Button) findViewById(R.id.wa_button_start);
+        mStartButton.setTypeface(MainActivity.fontFutura);
+        mStartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
 
