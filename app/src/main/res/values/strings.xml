@@ -1,9 +1,15 @@
 <resources>
-    <string name="app_name">Taks 1</string>
+    <string name="app_name">Task 1</string>
+    <string name="welcome_text">Hello world!</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="preferences_sells_count_4x6">4 x 6</string>
+    <string name="preferences_sells_count_5x7">5 x 7</string>
+
+    <string name="preferences_sells_color_red">red</string>
+    <string name="preferences_sells_color_blue">blue</string>
 
     <string name="perfect_design">Won\'t be lost!</string>
     <string name="to_simple">Even 4 you</string>

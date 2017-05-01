@@ -6,20 +6,21 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import by.thedrop.yandex_shad_task_1.Fragments.FragmentPreferences;
 import by.thedrop.yandex_shad_task_1.Fragments.FragmentWelcomeAdvantages;
 import by.thedrop.yandex_shad_task_1.R;
+import by.thedrop.yandex_shad_task_1.Views.NonSwipeableViewPager;
 
 public class WelcomePageActivity extends AppCompatActivity {
 
-    private static final int PAGE_COUNT = 3;
+    private static final int PAGE_COUNT = 5;
     private static int CURRENT_ITEM = 0;
 
-    private ViewPager mViewPager;
+    private NonSwipeableViewPager mViewPager;
     private PagerAdapter mPagerAdapter;
     private TabLayout tabLayout;
     private Button mStartButton;
@@ -30,7 +31,7 @@ public class WelcomePageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_welcome_page);
 
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
-        mViewPager = (ViewPager) findViewById(R.id.wa_view_pager);
+        mViewPager = (NonSwipeableViewPager) findViewById(R.id.wa_view_pager);
         mViewPager.setAdapter(mPagerAdapter);
         tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(mViewPager, true);
@@ -70,11 +71,15 @@ public class WelcomePageActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return new FragmentWelcomeAdvantages(R.drawable.fragment_design, R.string.perfect_design);
+                    return new FragmentWelcomeAdvantages(R.mipmap.ic_launcher, R.string.app_name,R.string.welcome_text);
                 case 1:
-                    return new FragmentWelcomeAdvantages(R.drawable.fragment_silly, R.string.to_simple);
+                    return new FragmentWelcomeAdvantages(R.drawable.fragment_design, R.string.perfect_design);
                 case 2:
+                    return new FragmentWelcomeAdvantages(R.drawable.fragment_silly, R.string.to_simple);
+                case 3:
                     return new FragmentWelcomeAdvantages(R.drawable.fragment_need, R.string.you_need_it);
+                case 4:
+                    return new FragmentPreferences();
             }
             return new FragmentWelcomeAdvantages(R.drawable.fragment_need, R.string.app_name);
         }
@@ -83,6 +88,5 @@ public class WelcomePageActivity extends AppCompatActivity {
         public int getCount() {
             return PAGE_COUNT;
         }
-
     }
 }

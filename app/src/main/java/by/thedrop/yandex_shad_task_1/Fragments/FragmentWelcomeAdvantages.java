@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import by.thedrop.yandex_shad_task_1.Activities.MainActivity;
 import by.thedrop.yandex_shad_task_1.R;
 
@@ -15,9 +17,11 @@ public class FragmentWelcomeAdvantages extends Fragment {
 
     private int imageResource;
     private int stringResource;
+    private int subStringResource;
 
     private ImageView mImageView;
     private TextView mTextView;
+    private TextView mSubTextView;
 
     public FragmentWelcomeAdvantages() {
         // Required empty public constructor
@@ -26,6 +30,12 @@ public class FragmentWelcomeAdvantages extends Fragment {
     public FragmentWelcomeAdvantages(int imageResource, int stringResource) {
         this.imageResource = imageResource;
         this.stringResource = stringResource;
+    }
+
+    public FragmentWelcomeAdvantages(int imageResource, int stringResource, int subStringResource) {
+        this.imageResource = imageResource;
+        this.stringResource = stringResource;
+        this.subStringResource = subStringResource;
     }
 
     @Override
@@ -44,12 +54,17 @@ public class FragmentWelcomeAdvantages extends Fragment {
 
         this.mImageView = (ImageView) v.findViewById(R.id.wa_image_view);
         this.mTextView = (TextView) v.findViewById(R.id.wa_textView);
+        this.mSubTextView = (TextView) v.findViewById(R.id.wa_subtextView);
+
         mImageView.setImageResource(imageResource);
         mTextView.setText(stringResource);
         mTextView.setTypeface(MainActivity.fontFutura);
+        if (subStringResource != 0) {
+            mSubTextView.setText(subStringResource);
+        } else {
+            mSubTextView.setText(null);
+        }
 
         return v;
     }
-
-
 }

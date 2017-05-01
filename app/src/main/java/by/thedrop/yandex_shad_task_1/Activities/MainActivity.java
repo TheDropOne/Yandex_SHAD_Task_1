@@ -11,6 +11,9 @@ public class MainActivity extends AppCompatActivity {
 
     public static Typeface fontFutura;
 
+    public static final String sTableStyle =  "TABLE_STYLE";
+    public static final String sAppStyle =  "APP_STYLE";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
